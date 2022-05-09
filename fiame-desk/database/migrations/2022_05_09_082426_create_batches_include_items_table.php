@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('batches_include_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id')->constrained('items');
-            $table->foreignId('batche_id')->constrained('batches');
+            $table->foreignId('batch_id')->constrained('batches');
             $table->timestamps();
         });
     }

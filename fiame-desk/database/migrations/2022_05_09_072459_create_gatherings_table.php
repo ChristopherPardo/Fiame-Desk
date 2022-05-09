@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('gatherings', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->nullable()->unique();
-            $table->string('description');
-            $table->foreignId('batche_id')->constrained('batches')->nullable();
+            $table->date('date')->unique();
+            $table->string('description')->nullable();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

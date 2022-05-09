@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable()->unique();
-            $table->string('description');
-            $table->double('price')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->string('image');
-            $table->foreignId('user_id')->constrained('users')->nullable();
+            $table->string('title')->unique();
+            $table->string('description')->nullable();
+            $table->double('price');
+            $table->integer('quantity');
+            $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
