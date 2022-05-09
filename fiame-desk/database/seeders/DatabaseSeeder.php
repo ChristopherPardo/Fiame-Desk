@@ -2,8 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Batch;
+use App\Models\batches_include_items;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Gathering;
+use App\Models\Item;
+use App\Models\users_order_batches;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +20,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $users = User::factory(10)->create();
+        $items = Item::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);
+        $gatherings = Gathering::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);
+        $batches = Batch::factory(10)->create(['gathering_id' => function() use ($gatherings) {return $gatherings->random()->id;}]);
+        users_order_batches::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}, 'batch_id' => function() use ($batches) {return $batches->random()->id;}]);
+        batches_include_items::factory(10)->create(['item_id' => function() use ($items) {return $items->random()->id;}, 'batch_id' => function() use ($batches) {return $batches->random()->id;}]);
     }
 }
