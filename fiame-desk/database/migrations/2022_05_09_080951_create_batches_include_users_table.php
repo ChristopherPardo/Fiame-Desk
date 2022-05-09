@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->integer('phone')->nullable()->unique();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
-            $table->string('password')->nullable();
-            $table->string('token')->nullable()->unique();
+        Schema::create('batches_include_users', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('batche_id')->constrained('batches');
+            $table->integer('number')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('batches_include_users');
     }
 };
