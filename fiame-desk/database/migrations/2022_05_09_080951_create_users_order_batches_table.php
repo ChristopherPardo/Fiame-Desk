@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users_order_batches', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('batch_id')->constrained('batches');
-            $table->integer('number')->autoIncrement();
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

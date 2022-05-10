@@ -21,7 +21,7 @@ class ItemFactory extends Factory
             'title' => $this->faker->unique()->text(10),
             'description' => $this->faker->text(),
             'price' => random_int(2,50),
-            'quantity' => rand(1,100),
+            'quantity' => rand(50,100),
             'image' => Str::random(30),
         ];
     }

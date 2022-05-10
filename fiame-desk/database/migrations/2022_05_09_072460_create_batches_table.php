@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('quantity');
             $table->foreignId('gathering_id')->constrained('gatherings');
+            $table->foreignId('item_id')->constrained('items');
             $table->timestamps();
         });
     }

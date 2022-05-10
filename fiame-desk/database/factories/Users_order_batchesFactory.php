@@ -17,7 +17,7 @@ class Users_order_batchesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'quantity' => rand(1,5)
         ];
     }
 }
