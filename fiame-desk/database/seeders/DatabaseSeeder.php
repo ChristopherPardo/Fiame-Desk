@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::factory(10)->create();
+        $users = User::factory(60)->create();
         $items = Item::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);
         $gatherings = Gathering::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);
         $batches = Batch::factory(10)->create(['gathering_id' => function() use ($gatherings) {return $gatherings->random()->id;}, 'item_id' => function() use ($items) {return $items->random()->id;}]);
