@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,18 @@ Route::get('/', function () {
 });
 
 Route::get('/members', function () {
-    return view('members');
+    $users = User::orderBy('firstname')->get();
+    return view('members')->with(compact('users'));
+})->name('members');
+
+Route::post('/members', function () {
+    $user = User::find(request('id'));
+    $user->admin = request('admin') == 'on';
+    $user->save();
+    return redirect('members');
 });
+
+
 
 Route::middleware([
     'auth:sanctum',

@@ -9,9 +9,10 @@
                         <td class="py-1 px-2 border-y ">{{ $user->lastname}}</td>
                         <td class="py-1 px-2 border-y ">{{ $user->phone }}</td>
                         <td class="py-1 px-2 border-y flex justify-center" x-data="{}">
-                            <form method="POST" action="/members" x-ref="form">
+                            <form method="POST" action="{{route('members') }}" x-ref="form">
                                 <input name="admin" @click="$refs.form.submit()" type="checkbox" {{ $user->admin ? 'checked' : ''}} class="w-6 h-6 rounded-full" />
                                 <input name="id" type="hidden" value="{{$user->id}}">
+                                @csrf
                             </form>
                         </td>
                     </tr>
