@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,13 +24,8 @@ Route::get('/members', function () {
     return view('members')->with(compact('users'));
 })->name('members');
 
-Route::post('/members', function () {
-    $user = User::find(request('id'));
-    $user->admin = request('admin') == 'on';
-    $user->save();
-    return redirect('members');
-});
-
+Route::post('/members/{user}', [UserController::class, 'update'])->name('members.update');
+Route::post('/members', [UserController::class, 'store'])->name('users.store');
 
 
 Route::middleware([

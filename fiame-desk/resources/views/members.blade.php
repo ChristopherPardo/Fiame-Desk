@@ -9,7 +9,7 @@
                         <td class="py-1 px-2 border-y ">{{ $user->lastname}}</td>
                         <td class="py-1 px-2 border-y ">{{ $user->phone }}</td>
                         <td class="py-1 px-2 border-y flex justify-center" x-data="{}">
-                            <form method="POST" action="{{route('members') }}" x-ref="form">
+                            <form method="POST" action="{{route('members.update',$user->id) }}" x-ref="form">
                                 <input name="admin" @click="$refs.form.submit()" type="checkbox" {{ $user->admin ? 'checked' : ''}} class="w-6 h-6 rounded-full" />
                                 <input name="id" type="hidden" value="{{$user->id}}">
                                 @csrf
@@ -21,7 +21,7 @@
             </table>
         </div>
         <div class="overflow-auto h-4/6 relative max-w-xl bg-white dark:bg-slate-800 dark:highlight-white/5 shadow-lg ring-1 ring-black/5 rounded-xl flex flex-col divide-y dark:divide-slate-200/5">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('register') }}">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('users.store') }}">
                 <h2 class="text-center py-5 font-bold">Ajouter un membre</h2>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
