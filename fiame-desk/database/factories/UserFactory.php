@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -30,7 +31,7 @@ class UserFactory extends Factory
             'phone' => '07'.rand(7000000, 9999999),
             'admin' => rand(1,5) == 1 ? true : false,
             'token' => Str::random(30),
-            'password' => 'Pa$$w0rd', // password
+            'password' => Hash::make('Pa$$w0rd'), // password
         ];
     }
 
