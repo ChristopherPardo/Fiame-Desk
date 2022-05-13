@@ -10,7 +10,11 @@
                         <td class="py-1 px-2 border-y ">{{ $user->phone }}</td>
                         <td class="py-1 px-2 border-y flex justify-center" x-data="{}">
                             <form method="POST" action="{{route('members.update',$user->id) }}" x-ref="form">
+                                @if ($user->id == auth()->user()->id)
+                                <input name="admin" disabled type="checkbox" checked class="w-6 h-6 rounded-full" />
+                                @else
                                 <input name="admin" @click="$refs.form.submit()" type="checkbox" {{ $user->admin ? 'checked' : ''}} class="w-6 h-6 rounded-full" />
+                                @endif
                                 <input name="id" type="hidden" value="{{$user->id}}">
                                 @csrf
                             </form>
@@ -57,7 +61,7 @@
                     </label>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"  type="submit">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Ajouter
                     </button>
                 </div>
