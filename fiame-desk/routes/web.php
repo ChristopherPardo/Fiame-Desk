@@ -19,13 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/members', function () {
-    $users = User::orderBy('firstname')->get();
-    return view('members')->with(compact('users'));
-})->name('members');
-
-Route::post('/members/{user}', [UserController::class, 'update'])->name('members.update');
-Route::post('/members', [UserController::class, 'store'])->name('users.store');
+Route::middleware('admin')->group(function ()
+{
+    Route::get('/members', function () {
+        $users = User::orderBy('firstname')->get();
+        return view('members')->with(compact('users'));
+    })->name('members');
+    
+    Route::post('/members/{user}', [UserController::class, 'update'])->name('members.update');
+    Route::post('/members', [UserController::class, 'store'])->name('users.store');
+});
 
 
 Route::middleware([
