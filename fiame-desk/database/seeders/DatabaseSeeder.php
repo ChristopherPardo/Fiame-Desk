@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UserSeeder::class);
         $users = User::factory(60)->create();
         $items = Item::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);
         $gatherings = Gathering::factory(10)->create(['user_id' => function() use ($users) {return $users->random()->id;}]);

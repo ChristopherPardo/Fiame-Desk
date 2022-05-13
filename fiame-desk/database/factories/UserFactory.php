@@ -28,7 +28,7 @@ class UserFactory extends Factory
         return [
             'firstname' => $this->faker->firstName(),
             'lastname' => $this->faker->lastName(),
-            'phone' => '07'.rand(7000000, 9999999),
+            'phone' => '07'.rand(70000000, 99999999),
             'admin' => rand(1,5) == 1 ? true : false,
             'token' => Str::random(30),
             'password' => Hash::make('Pa$$w0rd'), // password
