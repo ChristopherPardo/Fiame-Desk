@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div class="relative rounded-xl overflow-auto p-8 h-screen grid grid-cols-2">
         <div class="overflow-auto h-1/2 relative max-w-xl bg-white dark:bg-slate-800 dark:highlight-white/5 shadow-lg ring-1 ring-black/5 rounded-xl flex flex-col divide-y dark:divide-slate-200/5">
             <table class='table'>
