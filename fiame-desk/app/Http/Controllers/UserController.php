@@ -16,14 +16,14 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        
+
         Validator::make($request->all(), [
             'lastname' => ['required', 'string', 'max:255', 'regex:/^[a-z\s-]+$/i'],
             'firstname' => ['required', 'string', 'max:255', 'regex:/^[a-z\s-]+$/i'],
             'phone' => ['required', 'numeric', 'unique:users'],
-            'password' => $this->passwordRules(),
         ])->validate();
 
+dd('test');
         User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
