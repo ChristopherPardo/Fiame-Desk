@@ -31,19 +31,28 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
                         Prénom
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" name="firstname" type="text">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" name="firstname" type="text" value="{{old('firstname')}}">
+                    @error('firstname')
+                    <span class=" text-red-500 text-sm"> {{$message}}</span>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
                         Nom
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" name="lastname" type="text">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" name="lastname" type="text" value="{{old('lastname')}}">
+                    @error('lastname')
+                    <span class=" text-red-500 text-sm"> {{$message}}</span>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
                         Numéro de téléphone
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" name="phone" type="text">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" name="phone" type="text" value="{{old('phone')}}">
+                    @error('phone')
+                    <span class=" text-red-500 text-sm"> {{$message}}</span>
+                    @enderror
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -69,4 +78,4 @@
             </form>
         </div>
     </div>
-</x-guest-layout>
+    </x-guest-layout>
