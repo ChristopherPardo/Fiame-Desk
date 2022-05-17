@@ -18,25 +18,26 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-        ])->validateWithBag('updateProfileInformation');
+        /*Validator::make($input, [
+            'lastname' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'phone' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+        ])->validateWithBag('updateProfileInformation');*/
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
+        /*if ($input['phone'] !== $user->phone &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
-        } else {
-            $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
-            ])->save();
-        }
+        } else {*/
+        $user->forceFill([
+            'lastname' => $input['lastname'],
+            'firstname' => $input['firstname'],
+            'phone' => $input['phone'],
+        ])->save();
+        // }
     }
 
     /**
@@ -49,11 +50,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
+            'lastname' => $input['lastname'],
+            'firstname' => $input['firstname'],
+            'phone' => $input['phone'],
         ])->save();
-
-        $user->sendEmailVerificationNotification();
     }
 }
