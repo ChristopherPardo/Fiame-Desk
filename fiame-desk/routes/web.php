@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware('admin')->group(function ()
+{
+    Route::get('/members', function () {
+        $users = User::orderBy('firstname')->get();
+        return view('members')->with(compact('users'));
+    })->name('members');
+    
+    Route::post('/members/{user}', [UserController::class, 'update'])->name('members.update');
+    Route::post('/members', [UserController::class, 'store'])->name('users.store');
+});
+
 
 Route::middleware([
     'auth:sanctum',
