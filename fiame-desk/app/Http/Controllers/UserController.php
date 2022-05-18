@@ -23,7 +23,6 @@ class UserController extends Controller
             'phone' => ['required', 'numeric', 'unique:users'],
         ])->validate();
 
-dd('test');
         User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
