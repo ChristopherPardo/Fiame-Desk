@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GatheringController;
 use App\Http\Controllers\UserController;
 use App\Models\Gathering;
 use App\Models\User;
@@ -28,6 +29,8 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/members/{user}', [UserController::class, 'update'])->name('members.update');
     Route::post('/members', [UserController::class, 'store'])->name('users.store');
+
+    Route::post('/events/{gathering}', [GatheringController::class, 'Delete'])->name('events.delete');
 });
 
 
