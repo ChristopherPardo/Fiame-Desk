@@ -32,9 +32,6 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/events/{gathering}', [GatheringController::class, 'Delete'])->name('events.delete');
     Route::post('/events', [GatheringController::class, 'store'])->name('events.store');
-    Route::get('/events/add', function () {
-        return view('addEvent');
-    })->name('addEvent');
 });
 
 

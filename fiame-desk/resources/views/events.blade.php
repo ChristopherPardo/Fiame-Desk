@@ -11,16 +11,22 @@
         <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
-                Description
+                    Description
                 </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Description">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='description' id="description" type="text" value="{{old('description')}}" placeholder="Description">
+                @error('description')
+                <span class=" text-red-500 text-sm"> {{$message}}</span>
+                @enderror
             </div>
             <div class="flex items-center justify-center">
                 <div class="datepicker relative form-floating mb-3 xl:w-96" data-mdb-toggle-button="false">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
                         Date
                     </label>
-                    <input name="date" type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="20/11/2019" />
+                    <input name="date" type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="{{old('date')}}" placeholder="20/11/2019" />
+                    @error('date')
+                    <span class=" text-red-500 text-sm"> {{$message}}</span>
+                    @enderror
                     <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                         <i class="fas fa-calendar datepicker-toggle-icon"></i>
                     </button>
