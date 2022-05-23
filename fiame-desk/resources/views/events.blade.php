@@ -2,7 +2,7 @@
     @if(Auth::user()->id == 1)
     <div x-data="{open : false}">
         <div class="relative">
-            <button class="absolute right-0 top-0 h-16 w-16 m-5" x-on:click="open = ! open">
+            <button class="absolute z-10 right-0 top-0 h-16 w-16 m-5" x-on:click="open = ! open">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-13 w-13" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                 </svg>
@@ -31,6 +31,7 @@
                         <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                             <i class="fas fa-calendar datepicker-toggle-icon"></i>
                         </button>
+                        <input name="alter" value=false>
                     </div>
                 </div>
                 <div class="mb-6">

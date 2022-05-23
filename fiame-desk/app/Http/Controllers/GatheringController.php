@@ -18,6 +18,19 @@ class GatheringController extends Controller
         
         $date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d');
     
+            dd(Gathering::where('date', $date)->first());
+
+        if(Gathering::where('date', $date)->first() == null){
+            if(! $request->alter){
+                Validator::make($request->all(), [
+                    'date' => ['required', 'unique:gatherings'],
+                ])->validate();
+            }
+            
+           $request->save();
+
+        }
+
         Gathering::create([
             'description' => $request->description,
             'date' => $date,
