@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users_order_batches', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('batch_id')->constrained('batches');
+            $table->foreignId('batch_id')->constrained('batches')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

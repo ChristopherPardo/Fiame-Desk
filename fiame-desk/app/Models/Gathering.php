@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gathering extends Model
 {
+    protected $guarded = [];
+
+    // protected $casts = [
+    //     'date' => 'date'
+    // ];
+
     use HasFactory;
 }
