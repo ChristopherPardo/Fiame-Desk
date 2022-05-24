@@ -16,7 +16,7 @@
                     </label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='description' id="description" type="text" value="{{old('description')}}" placeholder="Description">
                     @error('description')
-                    <span class=" text-red-500 text-sm"> {{$message}}</span>
+                    <span x-show="open = true" class=" text-red-500 text-sm"> {{$message}}</span>
                     @enderror
                 </div>
                 <div class="flex items-center justify-center">
@@ -29,7 +29,7 @@
                             <button class="rounded bg-blue-500" @click="confirmed = true">Confirmer</button>
                         </div>
                         @error('date')
-                        <span class=" text-red-500 text-sm"> {{$message}}</span>
+                        <span x-show="open = true" class=" text-red-500 text-sm"> {{$message}}</span>
                         @enderror
                         <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                             <i class="fas fa-calendar datepicker-toggle-icon"></i>
