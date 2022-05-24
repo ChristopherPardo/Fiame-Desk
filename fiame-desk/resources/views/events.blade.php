@@ -53,7 +53,7 @@
         <div class="absolute grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
             @foreach ($gatherings as $gathering)
             <div class="max-w-md py-5 px-5 bg-white shadow-lg rounded-lg mx-10 my-10">
-                <Button @click="fGathering = @js($gathering), open = true">
+            @if(Auth::user()->id == 1)<Button @click="fGathering = @js($gathering), open = true"> @endif
                     <span>{{ date('d F Y', strtotime($gathering->date)); }}</span><br>
                     <div class="my-4">{{ $gathering->description }}</div>
                     @if(Auth::user()->id == 1)
@@ -66,7 +66,7 @@
                         @csrf
                     </form>
                     @endif
-                </Button>
+                    @if(Auth::user()->id == 1) </Button> @endif
             </div>
             @endforeach
         </div>
