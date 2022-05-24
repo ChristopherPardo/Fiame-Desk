@@ -1,6 +1,6 @@
 <x-app-layout>
     @if(Auth::user()->id == 1)
-    <div x-data="{open : false}">
+    <div x-data="{open : false, confirmed : false, showConfirmation : false,  gatherings : @js($gatherings->pluck('date'))}">
         <div class="relative">
             <button class="absolute z-10 right-0 top-0 h-16 w-16 m-5" x-on:click="open = ! open">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-13 w-13" viewBox="0 0 20 20" fill="currentColor">
@@ -9,7 +9,7 @@
             </button>
         </div>
         <div class="w-full max-w-xs m-5" x-show="open">
-            <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST" action="{{ route('events.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" x-ref="form">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
                         Description
@@ -24,19 +24,21 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="date">
                             Date
                         </label>
-                        <input name="date" type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="{{old('date')}}" placeholder="20/11/2019" />
+                        <input name="date" type="date" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="{{old('date')}}" x-ref="date" placeholder="20/11/2019" />
+                        <div x-show="showConfirmation"><span class="text-blue-500 text-sm">Il y à déjà un événement à cette date. Voulez-vous l'écraser ?</span><br>
+                            <button class="rounded bg-blue-500" @click="confirmed = true">Confirmer</button>
+                        </div>
                         @error('date')
                         <span class=" text-red-500 text-sm"> {{$message}}</span>
                         @enderror
                         <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                             <i class="fas fa-calendar datepicker-toggle-icon"></i>
                         </button>
-                        <input name="alter" value=false>
                     </div>
                 </div>
                 <div class="mb-6">
                     <div class="flex items-center justify-between">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" @click.prevent="gatherings.includes($refs.date.value) && confirmed == false ? showConfirmation = true : $refs.form.submit()">
                             Sauvegarder
                         </button>
                     </div>
