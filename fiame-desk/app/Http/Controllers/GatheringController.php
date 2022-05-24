@@ -34,4 +34,10 @@ class GatheringController extends Controller
 
         return redirect('events');
     }
+
+    public function delete(Gathering $gathering)
+    {
+        Gathering::find($gathering->id)->delete();
+        return Redirect('events');
+    }
 }
